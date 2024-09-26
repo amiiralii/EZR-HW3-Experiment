@@ -1,7 +1,7 @@
 mkdir -p /mnt/c/Users/amira/Desktop/Research/ezr/EZR-HW3-Experiment/exp/res
 mkdir -p /mnt/c/Users/amira/Desktop/Research/ezr/EZR-HW3-Experiment/exp/res/low-dimension
 mkdir -p /mnt/c/Users/amira/Desktop/Research/ezr/EZR-HW3-Experiment/exp/res/high-dimension
-rm /mnt/c/Users/amira/Desktop/Research/ezr/EZR-HW3-Experiment/exp/res/high-dimension/*
+rm /mnt/c/Users/amira/Desktop/Research/ezr/EZR-HW3-Experiment/exp/res/low-dimension/*
 rm /mnt/c/Users/amira/Desktop/Research/ezr/EZR-HW3-Experiment/exp/res/high-dimension/*
 python3.13 /mnt/c/Users/amira/Desktop/Research/ezr/EZR-HW3-Experiment/extend.py /mnt/c/Users/amira/Desktop/Research/ezr/EZR-HW3-Experiment/data/optimize/config/Apache_AllMeasurements.csv | tee /mnt/c/Users/amira/Desktop/Research/ezr/EZR-HW3-Experiment/exp/res/high-dimension/Apache_AllMeasurements.csv &
 python3.13 /mnt/c/Users/amira/Desktop/Research/ezr/EZR-HW3-Experiment/extend.py /mnt/c/Users/amira/Desktop/Research/ezr/EZR-HW3-Experiment/data/optimize/config/HSMGP_num.csv | tee /mnt/c/Users/amira/Desktop/Research/ezr/EZR-HW3-Experiment/exp/res/high-dimension/HSMGP_num.csv &
