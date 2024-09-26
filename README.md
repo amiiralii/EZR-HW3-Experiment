@@ -31,9 +31,38 @@ When all executions are done you can check the following directories to find the
     exp/res/low-dimension/
     exp/res/high-dimension/
 
-Results of the datasets with less than 6 features can be found in the first sub-directory, and the rest are in the second one.
+Results of the datasets with less than 6 features can be found in the first sub-directory and the rest are in the second one.
 Now it's the time for analyzing results. For this purpose there is a script file in the main directory called `rq.sh`. By running this file you can analyze all of the results you gathered so far, and make conclusions about stuff. You may run this file with the following command.
 
     bash rq.sh exp/res/low-dimension/ > low-dimension-res.txt
    
-Keep in mind that `rq.sh` should be runned twice, one for low dimensional results and one for high dimensional results. Once you have two files, `low-dimension-res.txt` and  `high-dimension-res.txt`, you have all the materials you need to wrap-up the experiment with statistically reliable, data-driven conclusions!
+Keep in mind that `rq.sh` should be run twice, one for low dimensional results and one for high dimensional results. Once you have two files, `low-dimension-res.txt` and  `high-dimension-res.txt`, you have all the materials you need to wrap-up the experiment with statistically reliable, data-driven conclusions!
+
+
+## Understanding Results
+
+Now that you can run the experiment it's time to take a look at the results, generated with each dataset. As it discussed before, by running the experiment on each dataset you'll get a output file with the same name as the dataset. In each of these outputs you can see the following pattern with different numbers:
+
+
+    exp/res/low-dimension/auto93.csv
+    #
+     0,                  smart,30,  0.25,  0.20, *         ---       |                   
+     0,                  smart,40,  0.25,  0.13, *     -------       |                   
+     0,                  smart,50,  0.25,  0.00, *------------       |                   
+    #
+     1,                  smart,20,  0.32,  0.25,    *                |                   
+    #
+     2,                   dumb,30,  0.37,  0.18, ---   *             |                   
+     2,                   dumb,40,  0.37,  0.18, ---   *             |                   
+     2,                   dumb,50,  0.39,  0.25,        *            |                   
+    #
+     3,                   dumb,20,  0.41,  0.13, ------  *           |                   
+    #
+     4,                  asIs,398,  0.75,  0.16,              -----  |     *------------ 
+
+Regarding the experiment, we have a set of methods that we want to see how well each of them performs and compare them with each other. Details about each treatment is accessible in the following table:
+| &nbsp;&nbsp;&nbsp;&nbsp;Treatments&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   | Info |
+|---|---|
+| asIs | Baseline, Chebyshev distance of all rows in the dataset. (Per each row, the normalized sum of the distances of all dependent variables to their ideal value(0 or 1)) |
+| dumb,N <br> *N in [20,30,40,50]* | Chebyshev distance of #N Randomly guessed rows |
+| smart,N <br> *N in [20,30,40,50]* | Chebyshev distance of #N best rows found by Active Learning Method |
