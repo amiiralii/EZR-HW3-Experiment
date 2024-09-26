@@ -60,9 +60,18 @@ Now that you can run the experiment it's time to take a look at the results, gen
     #
      4,                  asIs,398,  0.75,  0.16,              -----  |     *------------ 
 
-Regarding the experiment, we have a set of methods that we want to see how well each of them performs and compare them with each other. Details about each treatment is accessible in the following table:
+Regarding the experiment, we have a set of methods that we want to see how well each of them performs and compare them with each other. Details about each treatment are accessible in the following table:
 | &nbsp;&nbsp;&nbsp;&nbsp;Treatments&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   | Info |
 |---|---|
 | asIs | Baseline, Chebyshev distance of all rows in the dataset. (Per each row, the normalized sum of the distances of all dependent variables to their ideal value(0 or 1)) |
 | dumb,N <br> *N in [20,30,40,50]* | Chebyshev distance of #N Randomly guessed rows |
 | smart,N <br> *N in [20,30,40,50]* | Chebyshev distance of #N best rows found by Active Learning Method |
+
+
+Since randomized paramethers exist in our methods, in order to be able to statistically rely on the results, each experiment is repeated **20** times. This way there are 20 different values reported per each dataset-method pair. By looking at the table, you can find each row representing th results of each pair. 
+
+ - First number in each row is the rank of that treatment compared to all others. These ranks are calculated using **Scott-Knott** method. These ranks identifies whether two distributions are statistically distinguishable or not. For example, in table above, the first three treatments are statistically indistinguishable, thus having the same rank. For more information regarding [SK](https://www.scielo.br/j/tema/a/KMMPHsqnZnW9RnkmDdsYgtH/#:~:text=Scott-Knott%20is%20an%20hierarchical,overlapping%20in%20its%20grouping%20results.) and it's [implementation](https://github.com/amiiralii/EZR-HW3-Experiment/blob/main/stats.py#L118) you can use these links. 
+ - Second column of the table simply shows the name of each treatment. For example, `smart,30`.
+ - Third column represents the mean of the distribution.
+ - The forth number is the difference between 0.70th and 0.30th row of the dataset. For example, here each distribution contains 20 different values. If you sort them and find the difference between 6th and 14th value, you can easily calculate the value on the table (0.20 for the first treatment).
+ - Last column showcases a visual form of the distribution. 
