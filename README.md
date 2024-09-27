@@ -29,6 +29,7 @@ To run the experiment, you can open terminal on your local machine and type:
     Python3.13 script-generator.py  > exp/script.sh 
 
 After running this line you will find a new file named `script.sh` under the `exp` directory.
+
 \* Remember to have a sub-directory named `exp` in the main directory.
 
 ---
