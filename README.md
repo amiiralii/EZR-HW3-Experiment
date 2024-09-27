@@ -75,3 +75,61 @@ Since randomized paramethers exist in our methods, in order to be able to statis
  - Third column represents the mean of the distribution.
  - The forth number is the difference between 0.70th and 0.30th row of the dataset. For example, here each distribution contains 20 different values. If you sort them and find the difference between 6th and 14th value, you can easily calculate the value on the table (0.20 for the first treatment).
  - Last column showcases a visual form of the distribution. 
+
+
+
+## Analyzing all results
+
+As mentioned before there are tens of different files looks exactly like `auto93.csv` with differents numbers. Thereby, there is a need for a method to summerize all these results even more. And `rq.sh`, which is already discussed, is the solution. Two outputs of  `rq.sh`, `low-dimension-res.txt` and  `high-dimension-res.txt` demonstrate how well each method perform for different grups of datasets.
+Each of these files contains three parts: Rank, EVALS, and DELTAS.
+
++ RANK shows how often each method appears on each rank. For example, in `high-dimension-res.txt`, you can see smart methods appear on the best rank 88 percent of the time.
++ EVALS shows the mean and standard deviation of the N in the treatments. For example, in `high-dimension-res.txt`, the distribution of N in the smart methods that appear on the best rank is around 31 with a standard deviation of 12.
++ DELTAS is a metric for improvement regarding the baseline and is calculated with this function :
+ $$100 * {asIS - treatment \over asIs}$$
+
+ aa
+
+    high-dimension-res.txt
+    
+    RANK       0            1            2             3            4            5
+    smart     88           12                                                     
+    dumb      56           26           15             3                          
+    asIs       3           24           18            26           15           15
+                                                     100                          
+    #
+    #EVALS
+    RANK             0            1            2             3            4            5
+    smart     31 ( 12)     25 (  0)      0 (  0)       0 (  0)      0 (  0)      0 (  0)
+    dumb      28 (  0)     36 (  0)     40 (  0)      30 (  0)      0 (  0)      0 (  0)
+    asIs     3840 (  0)   2834 (  0)   11138 (  0)   9306 (  0)   3687 (  0)   34523 (  0)
+               0 (  0)      0 (  0)      0 (  0)       0 (  0)      0 (  0)      0 (  0)
+    #
+    #DELTAS
+    RANK             0            1            2             3            4            5
+    smart     71 ( 23)     51 (  0)      0 (  0)       0 (  0)      0 (  0)      0 (  0)
+    dumb      65 ( 26)     63 (  0)     60 (  0)      75 (  0)      0 (  0)      0 (  0)
+               0 (  0)      0 (  0)      0 (  0)      94 (  0)      0 (  0)      0 (  0)
+a
+
+    low-dimension-res.txt
+    
+    RANK       0           1            2           3           4
+    smart     87          13                                     
+    dumb      67          13           20                        
+                                                  100            
+    asIs                  33           27           7          33
+    #
+    #EVALS
+    RANK             0           1            2           3           4
+    smart     28 (  4)    35 (  0)      0 (  0)     0 (  0)     0 (  0)
+    dumb      26 (  8)    25 (  0)     30 (  0)     0 (  0)     0 (  0)
+               0 (  0)     0 (  0)      0 (  0)     0 (  0)     0 (  0)
+    asIs       0 (  0)   4118 (  0)   668 (  0)   259 (  0)   643 (  0)
+    #
+    #DELTAS
+    RANK             0           1            2           3           4
+    smart     76 ( 29)    36 (  0)      0 (  0)     0 (  0)     0 (  0)
+    dumb      65 ( 29)    61 (  0)     71 (  0)     0 (  0)     0 (  0)
+               0 (  0)     0 (  0)      0 (  0)    93 ( 39)     0 (  0)
+
