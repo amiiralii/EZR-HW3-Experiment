@@ -4,7 +4,14 @@ With respect to [EZR](https://github.com/timm/ezr/tree/24Aug14) source code, thi
 
 >    **JJR: Nothing works better than 50 random guessed for low dimensional problems (less than 6 x attributes), but such random guessing is rubbish for higher dimensional data. Let us test that.**
 
+## Table of contents
 
+ - [**How to run?**](https://github.com/amiiralii/EZR-HW3-Experiment/blob/main/README.md#how-to-run)
+ - [**Understanding Results**](https://github.com/amiiralii/EZR-HW3-Experiment/blob/main/README.md#understanding-results)
+ - **[Analyzing all results](https://github.com/amiiralii/EZR-HW3-Experiment/blob/main/README.md#analyzing-all-results)**
+ - **[Conclusion](https://github.com/amiiralii/EZR-HW3-Experiment/blob/main/README.md#conclusion)**
+
+---------
 
 ## How to run?
 
@@ -60,6 +67,7 @@ Now that you can run the experiment it's time to take a look at the results, gen
     #
      4,                  asIs,398,  0.75,  0.16,              -----  |     *------------ 
 
+
 Regarding the experiment, we have a set of methods that we want to see how well each of them performs and compare them with each other. Details about each treatment are accessible in the following table:
 | &nbsp;&nbsp;&nbsp;&nbsp;Treatments&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   | Info |
 |---|---|
@@ -72,9 +80,10 @@ Since randomized paramethers exist in our methods, in order to be able to statis
 
  - First number in each row is the rank of that treatment compared to all others. These ranks are calculated using **Scott-Knott** method. These ranks identifies whether two distributions are statistically distinguishable or not. For example, in table above, the first three treatments are statistically indistinguishable, thus having the same rank. For more information regarding [SK](https://www.scielo.br/j/tema/a/KMMPHsqnZnW9RnkmDdsYgtH/#:~:text=Scott-Knott%20is%20an%20hierarchical,overlapping%20in%20its%20grouping%20results.) and it's [implementation](https://github.com/amiiralii/EZR-HW3-Experiment/blob/main/stats.py#L118) you can use these links. 
  - Second column of the table simply shows the name of each treatment. For example, `smart,30`.
- - Third column represents the mean of the distribution.
+ - Third column represents the median of the distribution.
  - The forth number is the difference between 0.70th and 0.30th row of the dataset. For example, here each distribution contains 20 different values. If you sort them and find the difference between 6th and 14th value, you can easily calculate the value on the table (0.20 for the first treatment).
  - Last column showcases a visual form of the distribution. 
+
 
 
 ## Analyzing all results
@@ -151,6 +160,57 @@ Each of these files contains three parts: Rank, EVALS, and DELTAS.
                0 (  0)     0 (  0)      0 (  0)    93 ( 39)     0 (  0)
 
 
+## Conclusion
+
+Based on the information in `low-dimension-res.txt` and  `high-dimension-res.txt` we can make the following conclusions:
+
+    low-dimension-res.txt
+    RANK       0           1            2           3           4
+    smart     87          13                                     
+    dumb      67          13           20                        
+                                                  100            
+    asIs                  33           27           7          33
+    #
+    #EVALS
+    RANK             0           1            2           3           4
+    smart     28 (  4)    35 (  0)      0 (  0)     0 (  0)     0 (  0)
+    dumb      26 (  8)    25 (  0)     30 (  0)     0 (  0)     0 (  0)
+               0 (  0)     0 (  0)      0 (  0)     0 (  0)     0 (  0)
+    asIs       0 (  0)   4118 (  0)   668 (  0)   259 (  0)   643 (  0)
+    #
+    #DELTAS
+    RANK             0           1            2           3           4
+    smart     76 ( 29)    36 (  0)      0 (  0)     0 (  0)     0 (  0)
+    dumb      65 ( 29)    61 (  0)     71 (  0)     0 (  0)     0 (  0)
+               0 (  0)     0 (  0)      0 (  0)    93 ( 39)     0 (  0)
+>
+
+    high-dimension-res.txt
+    RANK       0            1            2             3            4            5
+    smart     88           12                                                     
+    dumb      56           26           15             3                          
+    asIs       3           24           18            26           15           15
+                                                     100                          
+    #
+    #EVALS
+    RANK             0            1            2             3            4            5
+    smart     31 ( 12)     25 (  0)      0 (  0)       0 (  0)      0 (  0)      0 (  0)
+    dumb      28 (  0)     36 (  0)     40 (  0)      30 (  0)      0 (  0)      0 (  0)
+    asIs     3840 (  0)   2834 (  0)   11138 (  0)   9306 (  0)   3687 (  0)   34523 (  0)
+               0 (  0)      0 (  0)      0 (  0)       0 (  0)      0 (  0)      0 (  0)
+    #
+    #DELTAS
+    RANK             0            1            2             3            4            5
+    smart     71 ( 23)     51 (  0)      0 (  0)       0 (  0)      0 (  0)      0 (  0)
+    dumb      65 ( 26)     63 (  0)     60 (  0)      75 (  0)      0 (  0)      0 (  0)
+               0 (  0)      0 (  0)      0 (  0)      94 (  0)      0 (  0)      0 (  0)
+
+In both groups(low and high dimensional), the **smart** methods consistently rank highly, with most evaluations in **rank 0** (88% in the high dimensional, 87% in the low dimensional). Its EVALS and DELTAS scores also remain strong and steady.
+
+The **dumb** methods show more variability but better performance in the low dimensional group, with a higher concentration in **rank 0** (67% vs. 56%).
 
 
+Finally, considering all the information,
+
+> **Since it is observed that smart methods outperform dumb methods in both groups, JJR hypothesis is not supported by the results of this experiment. Instead, based on the results, it can be concluded that smart methods are more powerful for all datasets. However, if the dataset has fewer than 6 features, it is more probable that a dumb method works as well compared to the datasets with more than 6 features.**
 
