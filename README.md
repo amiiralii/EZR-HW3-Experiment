@@ -4,6 +4,9 @@ With respect to [EZR](https://github.com/timm/ezr/tree/24Aug14) source code, thi
 
 >    **JJR: Nothing works better than 50 random guessed for low dimensional problems (less than 6 x attributes), but such random guessing is rubbish for higher dimensional data. Let us test that.**
 
+CSC 591, Tutorial 3 by **Amirali Rayegan**
+
+
 ## Table of contents
 
  - [**How to run?**](https://github.com/amiiralii/EZR-HW3-Experiment/blob/main/README.md#how-to-run)
